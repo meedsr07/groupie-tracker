@@ -1,0 +1,75 @@
+/* عام */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* العنوان الرئيسي */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #2c3e50;
+}
+
+/* البطاقات */
+div {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* صور الفنانين */
+img {
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+/* روابط الفنان */
+a {
+    text-decoration: none;
+    color: #2980b9;
+}
+
+a:hover {
+    color: #e74c3c;
+}
+
+/* عناوين البطاقات */
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* القوائم */
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+/* روابط العودة */
+a[href^="/"] {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background-color: #2980b9;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a[href^="/"]:hover {
+    background-color: #e74c3c;
+}
+
+/* عناوين الحفلات */
+h4 {
+    color: #34495e;
+    margin-bottom: 5px;
+}

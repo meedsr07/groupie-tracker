@@ -1,3 +1,4 @@
-module groupi
 
-go 1.22.3
+module groupie
+
+go 1.22.5
