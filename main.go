@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	
+	"html/template"
 )
 
 type Artist struct {
@@ -42,8 +41,10 @@ func Handeler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "method not alewed", 405)
 		return
 	}
-	fmt.Fprintf(w, "Artists count: %d\n", len(artists))
-	if len(artists) > 0 {
-		fmt.Fprintf(w, "First artist: %s\n", artists[0].Name)
+	tmpl,err := template.ParseFiles("templetes/index.html")
+	if err != nil{
+		http.Error(w,"intela erorr serevr",500)
 	}
+	tmpl.Execute(w,artists)
+
 }
