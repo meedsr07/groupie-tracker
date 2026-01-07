@@ -22,8 +22,8 @@ func main() {
 	// }
 	http.HandleFunc("/", Handeler)
 	http.HandleFunc("/artist", OneArtist)
-	fmt.Println("Starting server on http://localhost:8080")
-	Err := http.ListenAndServe(":8080", nil)
+	fmt.Println("Starting server on http://localhost:8081")
+	Err := http.ListenAndServe(":8081", nil)
 	if Err != nil {
 		log.Fatal(Err)
 	}
