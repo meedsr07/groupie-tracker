@@ -8,3 +8,11 @@ type Artist struct {
 	CreationDate int      `json:"creationDate"`
 	FirstAlbum   string   `json:"firstAlbum"`
 }
+type Location struct {
+	ID        int      `json:"id"`
+	Locations []string `json:"locations"`
+}
+type Date struct {
+	ID    int      `json:"id"`
+	Dates []string `json:"dates"`
+}

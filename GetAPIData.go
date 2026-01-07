@@ -19,11 +19,19 @@ func GetAPIData(url string) ([]byte, error) {
 	return data, nil
 }
 
-func DecodeData(data []byte) ([]Artist, error) {
+func DecodeDataArtiste(data []byte) ([]Artist, error) {
 	var artists []Artist
 	err := json.Unmarshal(data, &artists)
 	if err != nil {
 		return nil, err
 	}
 	return artists, nil
+}
+func DecodeDataLocation( data []byte)([]Location,error){
+	var locations []Location
+	err := json.Unmarshal(data,&locations)
+	if err!=nil{
+		return nil,err
+	}
+	return locations,err
 }

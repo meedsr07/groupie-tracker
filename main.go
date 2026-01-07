@@ -8,16 +8,13 @@ import (
 	"strconv"
 )
 
-var artists []Artist
-
 func main() {
-	url := "https://groupietrackers.herokuapp.com/api/artists"
-	data, err := GetAPIData(url)
-	if err != nil {
+	artists,err := FitchArtistData()
+	if err !=nil{
 		log.Fatal(err)
 	}
-	artists, err = DecodeData(data)
-	if err != nil {
+	locations,err:=FitchLocationData()
+	if err!=nil{
 		log.Fatal(err)
 	}
 	http.HandleFunc("/", Handeler)
@@ -59,20 +56,24 @@ func OneArtist(w http.ResponseWriter, r *http.Request) {
 	found := false
 	var selectedArtist Artist
 	for _, v := range artists {
-		if v.ID==artistId{
+		if v.ID == artistId {
 			selectedArtist = v
 			found = true
 			break
 		}
 	}
-	if !(found){
-		http.Error(w, "page not found",404)
+	if !(found) {
+		http.Error(w, "page not found", 404)
 		return
 	}
-	tmpl,err := template.ParseFiles("templetes/artist.html")
-	if err != nil{
-		http.Error(w,"internal server error",500)
+	tmpl, err := template.ParseFiles("templetes/artist.html")
+	if err != nil {
+		http.Error(w, "internal server error", 500)
 		return
 	}
-	tmpl.Execute(w,selectedArtist)
+	err = tmpl.Execute(w, selectedArtist)
+	if err != nil {
+		http.Error(w, "internal server error", 500)
+		return
+	}
 }
