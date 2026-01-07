@@ -7,16 +7,19 @@ import (
 	"net/http"
 	"strconv"
 )
+var artists []Artist
+// var locations []Location
 
 func main() {
-	artists,err := FitchArtistData()
-	if err !=nil{
+	var err error
+	artists, err = FitchArtistData()
+	if err != nil {
 		log.Fatal(err)
 	}
-	locations,err:=FitchLocationData()
-	if err!=nil{
-		log.Fatal(err)
-	}
+	// locations, err = FitchLocationData()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 	http.HandleFunc("/", Handeler)
 	http.HandleFunc("/artist", OneArtist)
 	fmt.Println("Starting server on http://localhost:8080")

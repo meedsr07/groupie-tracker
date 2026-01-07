@@ -7,11 +7,6 @@ const (
 	RelationsURL = "https://groupietrackers.herokuapp.com/api/relation"
 )
 
-var (
-	artists   []Artist
-	locations []Location
-)
-
 func FitchArtistData() ([]Artist, error) {
 	data, err := GetAPIData(ArtistsURL)
 	if err != nil {
