@@ -1,7 +1,6 @@
 package handlers
 
 import (
-
 	"html/template"
 	"net/http"
 
@@ -13,7 +12,7 @@ var artists []models.Artist
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		http.Error(w, "not found", http.StatusNotFound)
 		return
 	}
 	if r.Method != http.MethodGet {
@@ -39,5 +38,3 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-
-
