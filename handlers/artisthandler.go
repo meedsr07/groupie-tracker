@@ -41,6 +41,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	location, err := utils.FetchLocations()
 	if err != nil {
 		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		return
 	}
 	artistLocation, _ := GetArtistLocation(location, artistId)
 

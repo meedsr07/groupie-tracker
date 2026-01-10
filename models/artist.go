@@ -41,7 +41,7 @@ type DateIndex struct {
 	Index []Date `json:"index"`
 }
 type ArtistPageData struct {
-	Artist   Artist
-	Location Location
-	Date  Date
+    Artist   Artist
+    Location Location
+    Date    Date
 }

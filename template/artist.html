@@ -28,6 +28,18 @@
         <p>No location found</p>
     {{end}}
 
+    <p><strong>Dates:</strong></p>
+    {{if .Date.Dates}}
+    <ul>
+        {{range .Date.Dates}}
+            <li>{{.}}</li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p>No dates found</p>
+    {{end}}
+
+
     <input id="goBackButton" type="button" value="Go Back" onclick="history.back()">
 </body>
 </html>
