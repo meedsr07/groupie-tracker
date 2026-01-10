@@ -43,4 +43,5 @@ type DateIndex struct {
 type ArtistPageData struct {
 	Artist   Artist
 	Location Location
+	Date  Date
 }

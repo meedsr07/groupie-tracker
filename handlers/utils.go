@@ -14,3 +14,13 @@ func GetArtistLocation(locations models.LocationIndex, artistId int) (models.Loc
 	}
 	return locs, false
 }
+func GetArtistDate(dates models.DateIndex , artistId int) (models.Date, bool){
+	var Date models.Date
+	for _, v := range dates.Index {
+		if v.ID == artistId{
+			Date = v
+			return  Date ,true
+		}
+	}
+	return Date, false
+}

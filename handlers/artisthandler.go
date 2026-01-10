@@ -44,9 +44,16 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	artistLocation, _ := GetArtistLocation(location, artistId)
 
+	date, err := utils.FetchDates()
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	artistdate, _ := GetArtistDate(date, artistId)
 	data := models.ArtistPageData{
 		Artist:   selectedArtist,
 		Location: artistLocation,
+		Date:     artistdate,
 	}
 
 	tmpl, err := template.ParseFiles("template/artist.html")
