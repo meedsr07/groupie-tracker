@@ -24,3 +24,13 @@ func GetArtistDate(dates models.DateIndex , artistId int) (models.Date, bool){
 	}
 	return Date, false
 }
+func GetArtidtRelation(relotion models.RelationIndex, artistId int) (models.Relation,bool) {
+	var datelocalition models.Relation
+	for _,v := range relotion.Index{
+		if v.ID == artistId{
+			datelocalition = v
+			return  datelocalition , true
+		}
+	}
+	return datelocalition, false
+}

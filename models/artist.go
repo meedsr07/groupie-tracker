@@ -44,4 +44,5 @@ type ArtistPageData struct {
     Artist   Artist
     Location Location
     Date    Date
+	DatesLocations map[string][]string
 }
