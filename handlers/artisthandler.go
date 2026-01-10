@@ -62,5 +62,9 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "interanl server error", http.StatusInternalServerError)
 		return
 	}
-	tmpl.Execute(w, data)
+	err =tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
 }
