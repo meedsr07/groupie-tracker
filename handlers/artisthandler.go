@@ -54,16 +54,5 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "interanl server error", http.StatusInternalServerError)
 		return
 	}
-	 tmpl.Execute(w, data)
-}
-
-func GetArtistLocation(locations models.LocationIndex, artistId int) (models.Location, bool) {
-	var locs models.Location
-	for _, v := range locations.Index {
-		if v.ID == artistId {
-			locs = v
-			return locs, true
-		}
-	}
-	return locs, false
+	tmpl.Execute(w, data)
 }
