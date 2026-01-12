@@ -16,9 +16,11 @@
             <li>{{.}}</li>
         {{end}}
     </ul>
-
-    <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
-    <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+    <div class="artist-info">
+        <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+        <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+    </div>
+   
 
     <h2>Locations & Dates:</h2>
     {{if .DatesLocations}}
