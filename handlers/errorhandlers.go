@@ -9,7 +9,6 @@ type ErrorPage struct {
 	Code int
 	Message string
 }
-
 func ErrorHandler(w http.ResponseWriter, ErrorMessag string, statusCode int) {
 
 	errorPage := ErrorPage{

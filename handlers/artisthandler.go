@@ -11,17 +11,17 @@ import (
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		ErrorHandler(w,"method not allewed",405)
+		ErrorHandler(w,"methode not allewes",405)
 		return
 	}
 	id := r.URL.Query().Get("id")
 	if id == "" {
-		ErrorHandler(w,"page not fuond",404)
+		ErrorHandler(w, "Bad Request", 400)
 		return
 	}
 	artistId, err := strconv.Atoi(id)
 	if err != nil {
-		ErrorHandler(w,"page not fuond",404)
+		ErrorHandler(w, "Bad Request", 400)
 		return
 	}
 	found := false
@@ -34,27 +34,26 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if !(found) {
-		ErrorHandler(w,"page not found",404)
+		ErrorHandler(w, "page not found",404)
 		return
 	}
 
 	location, err := utils.FetchLocations()
 	if err != nil {
-		ErrorHandler(w,"internal server error",500)
+		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
 	artistLocation:= GetArtistLocation(location, artistId)
 
 	date, err := utils.FetchDates()
 	if err != nil {
-		ErrorHandler(w,"internal server error",500)
+		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
 	artistdate:= GetArtistDate(date, artistId)
 	artistrelation,err:=utils.FetchRelations()
 	if err != nil{
-		ErrorHandler(w,"intarnal server error",500)
-		return
+		ErrorHandler(w, "interanl server error", 500)
 	}
 	datarelation:=GetArtidtRelation(artistrelation,artistId)
 
@@ -67,12 +66,12 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles("templates/artist.html")
 	if err != nil {
-		ErrorHandler(w,"intarnal server error",500)
+		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
 	err =tmpl.Execute(w, data)
 	if err != nil {
-		ErrorHandler(w,"intarnal server error",500)
+		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
 }
