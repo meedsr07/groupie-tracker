@@ -11,17 +11,17 @@ import (
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		ErrorHandler(w,"method not allewed",405)
 		return
 	}
 	id := r.URL.Query().Get("id")
 	if id == "" {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
+		ErrorHandler(w,"page not fuond",404)
 		return
 	}
 	artistId, err := strconv.Atoi(id)
 	if err != nil {
-		http.Error(w, "page not found", http.StatusNotFound)
+		ErrorHandler(w,"page not fuond",404)
 		return
 	}
 	found := false
@@ -34,26 +34,27 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if !(found) {
-		http.Error(w, "page not found", http.StatusNotFound)
+		ErrorHandler(w,"page not found",404)
 		return
 	}
 
 	location, err := utils.FetchLocations()
 	if err != nil {
-		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		ErrorHandler(w,"internal server error",500)
 		return
 	}
 	artistLocation:= GetArtistLocation(location, artistId)
 
 	date, err := utils.FetchDates()
 	if err != nil {
-		http.Error(w, "internal server error", http.StatusInternalServerError)
+		ErrorHandler(w,"internal server error",500)
 		return
 	}
 	artistdate:= GetArtistDate(date, artistId)
 	artistrelation,err:=utils.FetchRelations()
 	if err != nil{
-		http.Error(w,"interanl server error",http.StatusInternalServerError)
+		ErrorHandler(w,"intarnal server error",500)
+		return
 	}
 	datarelation:=GetArtidtRelation(artistrelation,artistId)
 
@@ -64,14 +65,14 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		DatesLocations: datarelation.DatesLocations,
 	}
 
-	tmpl, err := template.ParseFiles("template/artist.html")
+	tmpl, err := template.ParseFiles("templates/artist.html")
 	if err != nil {
-		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		ErrorHandler(w,"intarnal server error",500)
 		return
 	}
 	err =tmpl.Execute(w, data)
 	if err != nil {
-		http.Error(w, "internal server error", http.StatusInternalServerError)
+		ErrorHandler(w,"intarnal server error",500)
 		return
 	}
 }
