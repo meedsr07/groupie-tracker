@@ -11,15 +11,11 @@ import (
 var artists []models.Artist
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.Error(w, "not found", http.StatusNotFound)
-		return
-	}
 	if r.Method != http.MethodGet {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-
+	// template.ParseFiles reades the html file when he found action like {{.}} he stocks in template object
 	tmpl, err := template.ParseFiles("template/index.html")
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)

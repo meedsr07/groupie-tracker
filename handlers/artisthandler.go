@@ -43,19 +43,19 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "interanl server error", http.StatusInternalServerError)
 		return
 	}
-	artistLocation, _ := GetArtistLocation(location, artistId)
+	artistLocation:= GetArtistLocation(location, artistId)
 
 	date, err := utils.FetchDates()
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
-	artistdate, _ := GetArtistDate(date, artistId)
+	artistdate:= GetArtistDate(date, artistId)
 	artistrelation,err:=utils.FetchRelations()
 	if err != nil{
 		http.Error(w,"interanl server error",http.StatusInternalServerError)
 	}
-	datarelation,_:=GetArtidtRelation(artistrelation,artistId)
+	datarelation:=GetArtidtRelation(artistrelation,artistId)
 
 	data := models.ArtistPageData{
 		Artist:   selectedArtist,

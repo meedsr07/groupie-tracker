@@ -4,33 +4,33 @@ import (
 	"groupie-tracker/models"
 )
 
-func GetArtistLocation(locations models.LocationIndex, artistId int) (models.Location, bool) {
+func GetArtistLocation(locations models.LocationIndex, artistId int) (models.Location) {
 	var locs models.Location
 	for _, v := range locations.Index {
 		if v.ID == artistId {
 			locs = v
-			return locs, true
+			return locs
 		}
 	}
-	return locs, false
+	return locs
 }
-func GetArtistDate(dates models.DateIndex , artistId int) (models.Date, bool){
+func GetArtistDate(dates models.DateIndex , artistId int) (models.Date){
 	var Date models.Date
 	for _, v := range dates.Index {
 		if v.ID == artistId{
 			Date = v
-			return  Date ,true
+			return  Date 
 		}
 	}
-	return Date, false
+	return Date
 }
-func GetArtidtRelation(relotion models.RelationIndex, artistId int) (models.Relation,bool) {
+func GetArtidtRelation(relotion models.RelationIndex, artistId int) (models.Relation) {
 	var datelocalition models.Relation
 	for _,v := range relotion.Index{
 		if v.ID == artistId{
 			datelocalition = v
-			return  datelocalition , true
+			return  datelocalition
 		}
 	}
-	return datelocalition, false
+	return datelocalition
 }
