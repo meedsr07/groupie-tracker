@@ -1,0 +1,83 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body & container */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #0f0c29; /* خلفية داكنة */
+    color: #ffffff;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #4ecdc4;
+    margin-bottom: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+h2 {
+    color: #ff6b6b;
+    font-size: 1.8rem;
+    margin: 20px 0 10px;
+}
+
+h3 {
+    color: #4ecdc4;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+ul li {
+    padding: 8px 15px;
+    margin: 5px 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 5px;
+}
+
+/* Location sections */
+.location-section {
+    background: rgba(78, 205, 196, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Link */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #0f0c29;
+    background: #4ecdc4;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    img { width: 200px; height: 200px; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.1rem; }
+}
