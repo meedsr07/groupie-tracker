@@ -15,6 +15,6 @@ func main() {
 	fmt.Printf("Server successfully started at http://localhost:8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
-		log.Fatalf("Critical Error: Failed to start the server: %v", err)
+		log.Fatal(err)
 	}
 }
