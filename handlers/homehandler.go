@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 
@@ -31,10 +32,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
-
-	err = tmpl.Execute(w, artists)
+	var buff bytes.Buffer
+	err = tmpl.Execute(&buff, artists)
 	if err != nil {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
+	w.Write(buff.Bytes())
 }

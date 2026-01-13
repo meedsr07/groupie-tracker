@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 )
@@ -21,6 +22,11 @@ func ErrorHandler(w http.ResponseWriter, ErrorMessag string, statusCode int) {
 		ErrorHandler(w, "internal server error", 500)
 		return
 	}
-
-	tmpl.Execute(w, errorPage)
+	var buff bytes.Buffer
+	tmpl.Execute(&buff, errorPage)
+	if err!= nil{
+		ErrorHandler(w,"internal server error",500)
+		return
+	}
+	w.Write(buff.Bytes())
 }

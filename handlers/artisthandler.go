@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -11,7 +12,7 @@ import (
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		ErrorHandler(w,"methode not allewes",405)
+		ErrorHandler(w, "methode not allewes", 405)
 		return
 	}
 	id := r.URL.Query().Get("id")
@@ -34,7 +35,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if !(found) {
-		ErrorHandler(w, "page not found",404)
+		ErrorHandler(w, "page not found", 404)
 		return
 	}
 
@@ -43,24 +44,24 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
-	artistLocation:= GetArtistLocation(location, artistId)
+	artistLocation := GetArtistLocation(location, artistId)
 
 	date, err := utils.FetchDates()
 	if err != nil {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
-	artistdate:= GetArtistDate(date, artistId)
-	artistrelation,err:=utils.FetchRelations()
-	if err != nil{
+	artistdate := GetArtistDate(date, artistId)
+	artistrelation, err := utils.FetchRelations()
+	if err != nil {
 		ErrorHandler(w, "interanl server error", 500)
 	}
-	datarelation:=GetArtidtRelation(artistrelation,artistId)
+	datarelation := GetArtidtRelation(artistrelation, artistId)
 
 	data := models.ArtistPageData{
-		Artist:   selectedArtist,
-		Location: artistLocation,
-		Date:     artistdate,
+		Artist:         selectedArtist,
+		Location:       artistLocation,
+		Date:           artistdate,
 		DatesLocations: datarelation.DatesLocations,
 	}
 
@@ -69,9 +70,11 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
-	err =tmpl.Execute(w, data)
+	var buff bytes.Buffer
+	err = tmpl.Execute(&buff, data)
 	if err != nil {
 		ErrorHandler(w, "interanl server error", 500)
 		return
 	}
+	w.Write(buff.Bytes())
 }
