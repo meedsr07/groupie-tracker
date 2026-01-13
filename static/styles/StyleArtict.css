@@ -1,14 +1,14 @@
-/* Reset */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body & container */
+
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #0f0c29; /* خلفية داكنة */
+    background: #0f0c29; 
     color: #ffffff;
     padding: 20px;
 }
@@ -91,7 +91,7 @@ a {
     font-weight: 600;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     img { width: 200px; height: 200px; }
