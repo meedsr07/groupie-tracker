@@ -1,31 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
+    "fmt"
+    "log"
+    "net/http"
+    "os"
 
-	"groupie-tracker/handlers"
+    "groupie-tracker/handlers"
 )
 
 func main() {
-	// قراءة PORT من environment
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-	http.ListenAndServe(":"+port, nil)
+    port := os.Getenv("PORT") // قراءة البورت من environment
+    if port == "" {
+        port = "8080" // لو محلياً
+    }
 
-	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/artist", handlers.ArtistHandler)
-	http.HandleFunc("/static/", handlers.StaticHandler)
+    http.HandleFunc("/", handlers.HomeHandler)
+    http.HandleFunc("/artist", handlers.ArtistHandler)
+    http.HandleFunc("/static/", handlers.StaticHandler)
 
-	fmt.Printf("Server successfully started at http://localhost:%s\n", port)
+    fmt.Printf("Server successfully started at http://localhost:%s\n", port)
 
-	// Listen على PORT الصحيح
-	err := http.ListenAndServe(":"+port, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+    log.Fatal(http.ListenAndServe(":"+port, nil)) // Listen على PORT الصحيح
 }
