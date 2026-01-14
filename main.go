@@ -13,8 +13,9 @@ func main() {
 	// قراءة PORT من environment
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080" // لو محليًا
+		port = "8080"
 	}
+	http.ListenAndServe(":"+port, nil)
 
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/artist", handlers.ArtistHandler)
